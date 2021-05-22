@@ -14,5 +14,6 @@ router.get("/signup/:username&:password", UserController.SignUpUser);
 router.get("/login/:username&:password", UserController.LoginUser);
 
 router.get("/getallclients", ClientController.getAllClients);
+router.get("/getclientservices/:clientid", ClientController.getClientService);
 
 module.exports = router;
