@@ -15,5 +15,6 @@ router.get("/login/:username&:password", UserController.LoginUser);
 
 router.get("/getallclients", ClientController.getAllClients);
 router.get("/getclientservices/:clientid", ClientController.getClientService);
+router.get("/createorder/:serviceid", ClientController.createOrder);
 
 module.exports = router;

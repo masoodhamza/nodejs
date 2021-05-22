@@ -35,7 +35,24 @@ async function getClientService(req, res, next) {
   });
 }
 
+async function createOrder(req, res, next) {
+  const { serviceid } = req.params;
+
+  let pool = sql.connect(config, function (error) {
+    if (error) console.log(error);
+
+    let sqlRequest = new sql.Request();
+    let sqlQuery = `EXEC CreateOrder ${serviceid}`;
+    sqlRequest.query(sqlQuery, function (error, data) {
+      if (error) console.log(error);
+
+      res.send(data.recordset);
+    });
+  });
+}
+
 module.exports = {
   getAllClients: getAllClients,
   getClientService: getClientService,
+  createOrder: createOrder,
 };
