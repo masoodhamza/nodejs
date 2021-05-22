@@ -1,7 +1,7 @@
 var express = require("express");
 const UserController = require("../controllers/UserController");
 var router = express.Router();
-var operations = require("../controllers/UserController");
+var ClientController = require("../controllers/ClientController");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
@@ -12,5 +12,7 @@ router.get("/", function (req, res, next) {
 router.get("/getallusers", UserController.getAllUsers);
 router.get("/signup/:username&:password", UserController.SignUpUser);
 router.get("/login/:username&:password", UserController.LoginUser);
+
+router.get("/getallclients", ClientController.getAllClients);
 
 module.exports = router;
