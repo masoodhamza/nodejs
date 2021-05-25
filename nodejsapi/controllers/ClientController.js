@@ -1,13 +1,13 @@
 var config = require("../dbconfig");
 const sql = require("mssql");
 
-async function getAllClients(req, res, next) {
+async function getAllRestaurants(req, res, next) {
   try {
     let pool = sql.connect(config, function (error) {
       if (error) console.log(error);
 
       let sqlRequest = new sql.Request();
-      let sqlQuery = "EXEC GetAllClientsInfo";
+      let sqlQuery = "EXEC GetAllRestaurantsInfo";
       sqlRequest.query(sqlQuery, function (error, data) {
         if (error) console.log(error);
 
@@ -19,14 +19,14 @@ async function getAllClients(req, res, next) {
   }
 }
 
-async function getClientService(req, res, next) {
-  const { clientid } = req.params;
+async function getRestaurantMenu(req, res, next) {
+  const { restaurantid } = req.params;
 
   let pool = sql.connect(config, function (error) {
     if (error) console.log(error);
 
     let sqlRequest = new sql.Request();
-    let sqlQuery = `EXEC GetClientServices ${clientid}`;
+    let sqlQuery = `EXEC GetRestaurantMenu ${restaurantid}`;
     sqlRequest.query(sqlQuery, function (error, data) {
       if (error) console.log(error);
 
@@ -36,13 +36,13 @@ async function getClientService(req, res, next) {
 }
 
 async function createOrder(req, res, next) {
-  const { serviceid } = req.params;
-
+  const { menuid } = req.params;
+  //TODO: add user id
   let pool = sql.connect(config, function (error) {
     if (error) console.log(error);
 
     let sqlRequest = new sql.Request();
-    let sqlQuery = `EXEC CreateOrder ${serviceid}`;
+    let sqlQuery = `EXEC CreateOrder ${menuid}`;
     sqlRequest.query(sqlQuery, function (error, data) {
       if (error) console.log(error);
 
@@ -52,7 +52,7 @@ async function createOrder(req, res, next) {
 }
 
 module.exports = {
-  getAllClients: getAllClients,
-  getClientService: getClientService,
+  getAllRestaurants: getAllRestaurants,
+  getRestaurantMenu: getRestaurantMenu,
   createOrder: createOrder,
 };

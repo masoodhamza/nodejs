@@ -2,7 +2,7 @@ const config = {
   user: "sa",
   password: "123",
   server: "localhost",
-  database: "LibraryManagement",
+  database: "RestaurantManagement",
   trustServerCertificate: true,
 };
 
