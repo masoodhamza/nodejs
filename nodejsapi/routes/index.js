@@ -18,6 +18,10 @@ router.get(
   "/getrestaurantmenu/:restaurantid",
   ClientController.getRestaurantMenu
 );
-router.get("/createorder/:menuid", ClientController.createOrder);
+router.get(
+  "/createorder/:userid/:itemid/:addonid?",
+  ClientController.createOrder
+);
+router.get("/getorderdetail/:orderid", ClientController.getOrderDetail);
 
 module.exports = router;
