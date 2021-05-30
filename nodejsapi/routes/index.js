@@ -23,5 +23,7 @@ router.get(
   ClientController.createOrder
 );
 router.get("/getorderdetail/:orderid", ClientController.getOrderDetail);
+router.get("/getuserorders/:userid", ClientController.getUserOrders);
+router.get("/createreorder/:userid/:orderid", ClientController.createReOrder);
 
 module.exports = router;
