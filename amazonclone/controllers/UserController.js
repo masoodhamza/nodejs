@@ -40,7 +40,26 @@ const Signin = async (req, res) => {
   }
 };
 
+const AddUserDetails = async (req, res) => {
+  const { userid, name, address, phone } = req.body;
+  try {
+    sql
+      .connect(config)
+      .then(() => {
+        const Request = new sql.Request();
+        const Query = `EXEC AddUserDetails '${userid}', '${name}', '${address}', '${phone}'`;
+        Request.query(Query)
+          .then((data) => res.send(data.recordset))
+          .catch((error) => console.log(error.message));
+      })
+      .catch((error) => console.log(error.message));
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 module.exports = {
   Signup: Signup,
   Signin: Signin,
+  AddUserDetails: AddUserDetails,
 };
